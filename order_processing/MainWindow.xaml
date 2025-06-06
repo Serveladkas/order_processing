@@ -18,7 +18,6 @@
             <Button ToolTip="Оформить заказ" Content="➕" x:Name="CreateOrderButton" Click="CreateOrderButton_Click"/>
             <Button ToolTip="Количество товаров на складе" Content="🗃" Command="{Binding ShowStockCommand}" x:Name="CheckQuantityProduct"/>
             <Button ToolTip="Уведомления о заказах" Content="🔔" Command="{Binding ShowNotificationsCommand}" x:Name="CheckТotificationOrder" Click="CheckТotificationOrder_Click"/>
-            <Button ToolTip="Обновить" Content="🔄" x:Name="CheckPageRefresh" Click="CheckPageRefresh_Click"/>
         </ToolBar>
 
         <!-- Список заказов -->

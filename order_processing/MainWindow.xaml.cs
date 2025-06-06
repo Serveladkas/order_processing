@@ -10,7 +10,7 @@ namespace order_processing
 {
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Order> Orders { get; set; }
+        public ObservableCollection<Order> Orders { get; set; } = new();
         public ICommand ShowStockCommand { get; set; }
 
         public MainWindow()
@@ -27,9 +27,17 @@ namespace order_processing
         {
             using (var context = new MyDBContext())
             {
-                Orders = new ObservableCollection<Order>(context.Orders.ToList());
+                // Очищаем существующую коллекцию
+                Orders.Clear();
+
+                // Добавляем новые заказы из базы данных
+                foreach (var order in context.Orders.ToList())
+                {
+                    Orders.Add(order);
+                }
             }
         }
+
 
         private void ShowStock()
         {
@@ -48,11 +56,6 @@ namespace order_processing
         private void CheckТotificationOrder_Click(object sender, RoutedEventArgs e)
         {
             // Реализация проверки уведомлений о заказах
-        }
-
-        private void CheckPageRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            LoadOrders(); // Обновляем список заказов
         }
 
         private void EditOrderButton_Click(object sender, RoutedEventArgs e)
